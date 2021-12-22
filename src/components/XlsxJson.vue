@@ -23,22 +23,59 @@ export default {
     updateJson(workbook) {
       const ws = workbook.Sheets[this.sheetNameFinder(workbook)];
       this.collection = this._sheet_to_json(ws, this.options);
+      if (this.collection.length < 1) {
+        var nullObj = [{}];
+        this.$emit("parsed", nullObj);
+        this.$emit("table", {
+          returnTable: returnTable,
+          title: "Cuộc thi",
+        });
+        return false;
+      }
       var duoi5 = [];
       var tu5Den65 = [];
       var tu65Den8 = [];
       var tu8Den10 = [];
       console.log(ws);
       console.log(this.collection);
+      var duoi5LamTrenMT = 0;
+      var tu5Den65LamTrenMT = 0;
+      var tu65Den8LamTrenMT = 0;
+      var tu8Den10LamTrenMT = 0;
+      var duoi5LamTrenDT = 0;
+      var tu5Den65LamTrenDT = 0;
+      var tu65Den8LamTrenDT = 0;
+      var tu8Den10LamTrenDT = 0;
       for (let i = 4; i < this.collection.length; i++) {
         let item = this.collection[i];
         if (item["__EMPTY_9"] < 5 || item["__EMPTY_9"] == "-") {
-          duoi5.push(item["__EMPTY_9"]);
+          duoi5.push(item);
+          if (item["__EMPTY_8"] && item["__EMPTY_8"].includes("Desktop")) {
+            duoi5LamTrenMT++;
+          } else {
+            duoi5LamTrenDT++;
+          }
         } else if (item["__EMPTY_9"] >= 5 && item["__EMPTY_9"] < 6.5) {
-          tu5Den65.push(item["__EMPTY_9"]);
+          tu5Den65.push(item);
+          if (item["__EMPTY_8"] && item["__EMPTY_8"].includes("Desktop")) {
+            tu5Den65LamTrenMT++;
+          } else {
+            tu5Den65LamTrenDT++;
+          }
         } else if (item["__EMPTY_9"] >= 6.5 && item["__EMPTY_9"] < 8) {
-          tu65Den8.push(item["__EMPTY_9"]);
+          tu65Den8.push(item);
+          if (item["__EMPTY_8"] && item["__EMPTY_8"].includes("Desktop")) {
+            tu65Den8LamTrenMT++;
+          } else {
+            tu65Den8LamTrenDT++;
+          }
         } else {
-          tu8Den10.push(item["__EMPTY_9"]);
+          tu8Den10.push(item);
+          if (item["__EMPTY_8"] && item["__EMPTY_8"].includes("Desktop")) {
+            tu8Den10LamTrenMT++;
+          } else {
+            tu8Den10LamTrenDT++;
+          }
         }
       }
       var text = this.collection[1];
@@ -70,8 +107,107 @@ export default {
               (tu8Den10.length / (this.collection.length - 4)) * 100
             ).toFixed(2) + "%",
         },
+        {
+          [string]: "Làm trên máy tính",
+          "Dưới 5:": duoi5LamTrenMT + " Học sinh",
+          "Từ 5 đến 6.5:": tu5Den65LamTrenMT + " Học sinh",
+          "Từ 6.5 đến 8:": tu65Den8LamTrenMT + " Học sinh",
+          "Từ 8 đến 10:": tu8Den10LamTrenMT + " Học sinh",
+        },
+        {
+          [string]: "Tỉ lệ Làm trên máy tính",
+          "Dưới 5:":
+            parseFloat(
+              (duoi5LamTrenMT / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+          "Từ 5 đến 6.5:":
+            parseFloat(
+              (tu5Den65LamTrenMT / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+          "Từ 6.5 đến 8:":
+            parseFloat(
+              (tu65Den8LamTrenMT / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+          "Từ 8 đến 10:":
+            parseFloat(
+              (tu8Den10LamTrenMT / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+        },
+        {
+          [string]: "Làm trên điện thoại",
+          "Dưới 5:": duoi5LamTrenDT + " Học sinh",
+          "Từ 5 đến 6.5:": tu5Den65LamTrenDT + " Học sinh",
+          "Từ 6.5 đến 8:": tu65Den8LamTrenDT + " Học sinh",
+          "Từ 8 đến 10:": tu8Den10LamTrenDT + " Học sinh",
+        },
+        {
+          [string]: "Tỉ lệ Làm trên máy tính",
+          "Dưới 5:":
+            parseFloat(
+              (duoi5LamTrenDT / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+          "Từ 5 đến 6.5:":
+            parseFloat(
+              (tu5Den65LamTrenDT / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+          "Từ 6.5 đến 8:":
+            parseFloat(
+              (tu65Den8LamTrenDT / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+          "Từ 8 đến 10:":
+            parseFloat(
+              (tu8Den10LamTrenDT / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+        },
+      ];
+      var returnTable = [
+        {
+          a: "Số học sinh",
+          b: duoi5.length + " Học sinh",
+          c: tu5Den65.length + " Học sinh",
+          d: tu65Den8.length + " Học sinh",
+          e: tu8Den10.length + " Học sinh",
+        },
+        {
+          a: "Tỉ lệ",
+          b:
+            parseFloat(
+              (duoi5.length / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+          c:
+            parseFloat(
+              (tu5Den65.length / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+          d:
+            parseFloat(
+              (tu65Den8.length / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+          e:
+            parseFloat(
+              (tu8Den10.length / (this.collection.length - 4)) * 100
+            ).toFixed(2) + "%",
+        },
+        {
+          a: "Số lượng làm trên máy tính",
+          b: duoi5LamTrenMT + " Học sinh",
+          c: tu5Den65LamTrenMT + " Học sinh",
+          d: tu65Den8LamTrenMT + " Học sinh",
+          e: tu8Den10LamTrenMT + " Học sinh",
+        },
+        {
+          a: "Số lượng làm trên điện thoại",
+          b: duoi5LamTrenDT + " Học sinh",
+          c: tu5Den65LamTrenDT + " Học sinh",
+          d: tu65Den8LamTrenDT + " Học sinh",
+          e: tu8Den10LamTrenDT + " Học sinh",
+        },
       ];
       this.$emit("parsed", returnJson);
+      var objTable = {
+        returnTable: returnTable,
+        title: string,
+      };
+      this.$emit("table", objTable);
     },
   },
   render(h) {

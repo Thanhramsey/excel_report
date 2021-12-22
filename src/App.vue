@@ -2,14 +2,15 @@
   <div class="VueXlsx">
     <section>
       <section>
-        <h2>Import File</h2>
+        <h2>Import Báo Cáo</h2>
         <input type="file" @change="onChange" class="mb-5" />
         <xlsx-read :file="file">
           <template #default="{ loading }">
             <span v-if="loading">Loading...</span>
             <xlsx-sheets>
               <template #default="{ sheets }">
-                <select v-model="selectedSheet">
+                <label style="margin-right: 5px">Chọn sheet</label>
+                <select v-model="selectedSheet" class="select-sheet">
                   <option value="">Chọn sheet</option>
                   <option v-for="sheet in sheets" :key="sheet" :value="sheet">
                     {{ sheet }}
@@ -17,20 +18,39 @@
                 </select>
               </template>
             </xlsx-sheets>
-            <xlsx-json :sheet="selectedSheet" @parsed="updateColecction">
+            <xlsx-json
+              :sheet="selectedSheet"
+              @parsed="updateColecction"
+              @table="returnTable"
+            >
             </xlsx-json>
           </template>
         </xlsx-read>
       </section>
       <hr />
-      <h2>Xuất file</h2>
-      <div>
-        <button v-if="sheetName" @click="addSheet" class="mb-5">
-          Tạo dữ liệu
-        </button>
-      </div>
+      <h2>Xuất Báo Cáo</h2>
 
       <div class="mb-5">Dữ liệu : {{ sheets }}</div>
+      <table class="mb-5 table">
+        <thead>
+          <tr>
+            <th>{{ tableTitle }}</th>
+            <th>Dưới 5</th>
+            <th>Từ 5 đến 6.5</th>
+            <th>Từ 6.5 đến 8</th>
+            <th>Từ 8 đến 10</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in table" :key="item">
+            <td>{{ item.a }}</td>
+            <td>{{ item.b }}</td>
+            <td>{{ item.c }}</td>
+            <td>{{ item.d }}</td>
+            <td>{{ item.e }}</td>
+          </tr>
+        </tbody>
+      </table>
       <xlsx-workbook>
         <xlsx-sheet
           :collection="sheet.data"
@@ -44,7 +64,7 @@
           sheet-name="fromJson"
         />
         <xlsx-download @done="updateColecction">
-          <button>Tải về</button>
+          <button class="button-77" role="button">Tải về</button>
         </xlsx-download>
       </xlsx-workbook>
     </section>
@@ -76,11 +96,17 @@ export default {
       sheets: [],
       collection: [],
       jsonFile: null,
+      table: [],
+      tableTitle: "Cuộc thi",
     };
   },
   methods: {
     onChange(event) {
       this.file = event.target.files ? event.target.files[0] : null;
+      this.collection = [];
+      this.table = [];
+      this.sheets = [];
+      this.tableTitle = "Cuộc Thi";
     },
     onJsonFileChange(event) {
       const reader = new FileReader();
@@ -93,6 +119,11 @@ export default {
     updateColecction(data) {
       this.collection = data;
       this.sheets = [];
+      this.addSheet();
+    },
+    returnTable(data) {
+      this.table = data.returnTable;
+      this.tableTitle = data.title;
     },
     addSheet() {
       this.sheets.push({ name: this.sheetName, data: [...this.collection] });
@@ -113,5 +144,70 @@ export default {
   background-color: antiquewhite;
   height: 100vh;
   padding: 50px;
+}
+.table {
+  border: 3px groove midnightblue;
+  border-radius: 5px;
+  font-size: larger;
+}
+.table th {
+  border-right: 1px groove black;
+  padding: 5px;
+}
+.table th:last-child {
+  border-right: none;
+}
+.table td {
+  border-bottom: 1px groove black;
+  border-right: 1px groove black;
+  padding: 5px;
+}
+.table td:last-child {
+  border-right: none;
+}
+.table tr:first-child td {
+  border-top: 1px solid black;
+}
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Button style */
+.button-77 {
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,
+    rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
+    rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
+    rgba(44, 187, 99, 0.15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  font-weight: bold;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-77:hover {
+  box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
+    rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
+    rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
+    rgba(44, 187, 99, 0.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+.select-sheet {
+  height: 30px;
+  padding: 5px;
+  font-weight: bold;
+  border: 2px solid cadetblue;
+  border-radius: 5px;
 }
 </style>

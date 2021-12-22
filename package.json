@@ -10,7 +10,7 @@
   "homepage": "https://vue-xlsx.netlify.com/",
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "rollup -c --environment NODE_ENV:production",
+    "build": "vue-cli-service build",
     "prepare": "npm run build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
