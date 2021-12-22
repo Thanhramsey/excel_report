@@ -2,11 +2,6 @@
   "name": "vue-xlsx",
   "version": "0.2.1",
   "private": false,
-  "author": {
-    "name": "Nicolo Maria Mezzopera",
-    "email": "nicolo.mezzopera@gmail.com",
-    "url": "donnico.dev"
-  },
   "homepage": "https://vue-xlsx.netlify.com/",
   "scripts": {
     "dev": "vue-cli-service serve",

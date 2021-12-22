@@ -46,35 +46,55 @@ export default {
       var tu5Den65LamTrenDT = 0;
       var tu65Den8LamTrenDT = 0;
       var tu8Den10LamTrenDT = 0;
+      var duoi5KhongXacDinh = 0;
+      var tu5Den65KhongXacDinh = 0;
+      var tu65Den8KhongXacDinh = 0;
+      var tu8Den10KhongXacDinh = 0;
       for (let i = 4; i < this.collection.length; i++) {
         let item = this.collection[i];
         if (item["__EMPTY_9"] < 5 || item["__EMPTY_9"] == "-") {
           duoi5.push(item);
-          if (item["__EMPTY_8"] && item["__EMPTY_8"].includes("Desktop")) {
-            duoi5LamTrenMT++;
+          if (item["__EMPTY_8"]) {
+            if (item["__EMPTY_8"].includes("Desktop")) {
+              duoi5LamTrenMT++;
+            } else {
+              duoi5LamTrenDT++;
+            }
           } else {
-            duoi5LamTrenDT++;
+            duoi5KhongXacDinh++;
           }
         } else if (item["__EMPTY_9"] >= 5 && item["__EMPTY_9"] < 6.5) {
           tu5Den65.push(item);
-          if (item["__EMPTY_8"] && item["__EMPTY_8"].includes("Desktop")) {
-            tu5Den65LamTrenMT++;
+          if (item["__EMPTY_8"]) {
+            if (item["__EMPTY_8"].includes("Desktop")) {
+              tu5Den65LamTrenMT++;
+            } else {
+              tu5Den65LamTrenDT++;
+            }
           } else {
-            tu5Den65LamTrenDT++;
+            tu5Den65KhongXacDinh++;
           }
         } else if (item["__EMPTY_9"] >= 6.5 && item["__EMPTY_9"] < 8) {
           tu65Den8.push(item);
-          if (item["__EMPTY_8"] && item["__EMPTY_8"].includes("Desktop")) {
-            tu65Den8LamTrenMT++;
+          if (item["__EMPTY_8"]) {
+            if (item["__EMPTY_8"].includes("Desktop")) {
+              tu65Den8LamTrenMT++;
+            } else {
+              tu65Den8LamTrenDT++;
+            }
           } else {
-            tu65Den8LamTrenDT++;
+            tu65Den8KhongXacDinh++;
           }
-        } else {
+        } else if (item["__EMPTY_9"] >= 8 && item["__EMPTY_9"] <= 10) {
           tu8Den10.push(item);
-          if (item["__EMPTY_8"] && item["__EMPTY_8"].includes("Desktop")) {
-            tu8Den10LamTrenMT++;
+          if (item["__EMPTY_8"]) {
+            if (item["__EMPTY_8"].includes("Desktop")) {
+              tu8Den10LamTrenMT++;
+            } else {
+              tu8Den10LamTrenDT++;
+            }
           } else {
-            tu8Den10LamTrenDT++;
+            tu8Den10KhongXacDinh++;
           }
         }
       }
@@ -159,6 +179,13 @@ export default {
               (tu8Den10LamTrenDT / (this.collection.length - 4)) * 100
             ).toFixed(2) + "%",
         },
+        {
+          [string]: "Không xác định thiết bị",
+          "Dưới 5:": duoi5KhongXacDinh,
+          "Từ 5 đến 6.5:": tu5Den65KhongXacDinh,
+          "Từ 6.5 đến 8:": tu65Den8KhongXacDinh,
+          "Từ 8 đến 10:": tu8Den10KhongXacDinh,
+        },
       ];
       var returnTable = [
         {
@@ -200,6 +227,13 @@ export default {
           c: tu5Den65LamTrenDT + " Học sinh",
           d: tu65Den8LamTrenDT + " Học sinh",
           e: tu8Den10LamTrenDT + " Học sinh",
+        },
+        {
+          a: "Số lượng thiết bị không xác định",
+          b: duoi5KhongXacDinh,
+          c: tu5Den65KhongXacDinh,
+          d: tu65Den8KhongXacDinh,
+          e: tu8Den10KhongXacDinh,
         },
       ];
       this.$emit("parsed", returnJson);
