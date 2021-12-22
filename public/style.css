@@ -6,9 +6,9 @@
   }
 
   .VueXlsx {
-	background-color: antiquewhite;
-	height: 105vh;
+	height: 100vh;
 	padding: 50px;
+	background-image: url('bg.jpg');
   }
   .table {
 	border: 3px groove midnightblue;
@@ -74,4 +74,8 @@
 	font-weight: bold;
 	border: 2px solid cadetblue;
 	border-radius: 5px;
+  }
+
+  h2 {
+	color: darkslategray;
   }

@@ -30,7 +30,7 @@
       <hr />
       <h2>Xuất Báo Cáo</h2>
 
-      <div class="mb-5">Dữ liệu : {{ sheets }}</div>
+      <!-- <div class="mb-5">Dữ liệu : {{ sheets }}</div> -->
       <table class="mb-5 table">
         <thead>
           <tr>
