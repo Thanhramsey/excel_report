@@ -14,7 +14,8 @@
     "docs:build": "yarn docs:prepare && vuepress build docs"
   },
   "dependencies": {
-    "vue-xlsx": "^0.2.1"
+    "vue-xlsx": "^0.2.1",
+    "vuetify": "^2.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

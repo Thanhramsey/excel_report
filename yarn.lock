@@ -13962,7 +13962,7 @@
   "resolved" "https://registry.npmjs.org/vue-xlsx/-/vue-xlsx-0.2.1.tgz"
   "version" "0.2.1"
 
-"vue@^2.5.16", "vue@^2.5.17", "vue@^2.6.10", "vue@^2.x", "vue@2.x":
+"vue@^2.5.16", "vue@^2.5.17", "vue@^2.6.10", "vue@^2.6.4", "vue@^2.x", "vue@2.x":
   "integrity" "sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.14.tgz"
   "version" "2.6.14"
@@ -14041,6 +14041,11 @@
     "webpack-serve" "^1.0.2"
     "webpackbar" "^2.6.1"
     "workbox-build" "^3.1.0"
+
+"vuetify@^2.6.1":
+  "integrity" "sha512-WtqarqEIJlhiwl1TShtkq58xtfbHpn4BjkuQtsL7mAs2eHCo7QjA3tUm7Dx/NmDc4wa2ghUUth36jTdG+CCWRg=="
+  "resolved" "https://registry.npmjs.org/vuetify/-/vuetify-2.6.1.tgz"
+  "version" "2.6.1"
 
 "w3c-hr-time@^1.0.1":
   "integrity" "sha512-z8P5DvDNjKDoFIHK7q8r8lackT6l+jo/Ye3HOle7l9nICP9lf1Ci25fy9vHd0JOWewkIFzXIEig3TdKT7JQ5fQ=="
