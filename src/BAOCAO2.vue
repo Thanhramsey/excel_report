@@ -63,7 +63,7 @@
           <tr v-for="(item, index) in listVangThi" :key="item.__EMPTY_2">
             <td>{{ index + 1 }}</td>
             <td>{{ item.__EMPTY_2 }}</td>
-            <td>{{ item.__EMPTY }}</td>
+            <td>{{ item.__EMPTY + "Vòng thi: " + item.__EMPTY_1 }}</td>
             <td>{{ item.__EMPTY_4 }}</td>
           </tr>
         </tbody>

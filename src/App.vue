@@ -42,12 +42,4 @@ export default {
 };
 </script>
 
-<style>
-.big-card {
-  /* background-image: #d0d4f1 !important */
-  background-image: url("../public/bg.jpg");
-}
-.v-slide-group__content.v-tabs-bar__content {
-  background-color: darkslategray;
-}
-</style>
+<style></style>

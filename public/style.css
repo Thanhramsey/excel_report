@@ -84,3 +84,11 @@
   h2 {
 	color: darkslategray;
   }
+
+  .big-card {
+	/* background-image: #d0d4f1 !important */
+	background-image: url("bg.jpg");
+  }
+  .v-slide-group__content.v-tabs-bar__content {
+	background-color: darkslategray;
+  }
