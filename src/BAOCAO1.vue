@@ -39,6 +39,7 @@
             <th>Từ 5 đến 6.5</th>
             <th>Từ 6.5 đến 8</th>
             <th>Từ 8 đến 10</th>
+            <th>Tổng</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@
             <td>{{ item.c }}</td>
             <td>{{ item.d }}</td>
             <td>{{ item.e }}</td>
+            <td>{{ item.f }}</td>
           </tr>
         </tbody>
       </table>

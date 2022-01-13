@@ -116,6 +116,12 @@ export default {
             "Từ 5 đến 6.5:": tu5Den65.length + " Học sinh",
             "Từ 6.5 đến 8:": tu65Den8.length + " Học sinh",
             "Từ 8 đến 10:": tu8Den10.length + " Học sinh",
+            "Tổng:":
+              duoi5.length +
+              tu65Den8.length +
+              tu8Den10.length +
+              tu5Den65.length +
+              " Học sinh",
           },
           {
             [string]: "Tỉ lệ %",
@@ -135,6 +141,7 @@ export default {
               parseFloat(
                 (tu8Den10.length / (this.collection.length - 4)) * 100
               ).toFixed(2) + "%",
+            "Tổng:": "100%",
           },
           {
             [string]: "Làm trên máy tính",
@@ -142,6 +149,11 @@ export default {
             "Từ 5 đến 6.5:": tu5Den65LamTrenMT + " Học sinh",
             "Từ 6.5 đến 8:": tu65Den8LamTrenMT + " Học sinh",
             "Từ 8 đến 10:": tu8Den10LamTrenMT + " Học sinh",
+            "Tổng:":
+              duoi5LamTrenMT +
+              tu5Den65LamTrenMT +
+              tu65Den8LamTrenMT +
+              tu8Den10LamTrenMT,
           },
           {
             [string]: "Tỉ lệ Làm trên máy tính",
@@ -161,6 +173,15 @@ export default {
               parseFloat(
                 (tu8Den10LamTrenMT / (this.collection.length - 4)) * 100
               ).toFixed(2) + "%",
+            "Tổng:":
+              parseFloat(
+                ((duoi5LamTrenMT +
+                  tu5Den65LamTrenMT +
+                  tu65Den8LamTrenMT +
+                  tu8Den10LamTrenMT) /
+                  (this.collection.length - 4)) *
+                  100
+              ).toFixed(2) + "%",
           },
           {
             [string]: "Làm trên điện thoại",
@@ -168,6 +189,11 @@ export default {
             "Từ 5 đến 6.5:": tu5Den65LamTrenDT + " Học sinh",
             "Từ 6.5 đến 8:": tu65Den8LamTrenDT + " Học sinh",
             "Từ 8 đến 10:": tu8Den10LamTrenDT + " Học sinh",
+            "Tổng:":
+              duoi5LamTrenDT +
+              tu5Den65LamTrenDT +
+              tu65Den8LamTrenDT +
+              tu8Den10LamTrenDT,
           },
           {
             [string]: "Tỉ lệ Làm trên máy tính",
@@ -187,6 +213,15 @@ export default {
               parseFloat(
                 (tu8Den10LamTrenDT / (this.collection.length - 4)) * 100
               ).toFixed(2) + "%",
+            "Tổng:":
+              parseFloat(
+                ((duoi5LamTrenDT +
+                  tu5Den65LamTrenDT +
+                  tu65Den8LamTrenDT +
+                  tu8Den10LamTrenDT) /
+                  (this.collection.length - 4)) *
+                  100
+              ).toFixed(2) + "%",
           },
           {
             [string]: "Không xác định thiết bị",
@@ -203,6 +238,12 @@ export default {
             c: tu5Den65.length + " Học sinh",
             d: tu65Den8.length + " Học sinh",
             e: tu8Den10.length + " Học sinh",
+            f:
+              duoi5.length +
+              tu5Den65.length +
+              tu65Den8.length +
+              tu8Den10.length +
+              " Học sinh",
           },
           {
             a: "Tỉ lệ",
@@ -222,6 +263,7 @@ export default {
               parseFloat(
                 (tu8Den10.length / (this.collection.length - 4)) * 100
               ).toFixed(2) + "%",
+            f: "100%",
           },
           {
             a: "Số lượng làm trên máy tính",
@@ -229,6 +271,12 @@ export default {
             c: tu5Den65LamTrenMT + " Học sinh",
             d: tu65Den8LamTrenMT + " Học sinh",
             e: tu8Den10LamTrenMT + " Học sinh",
+            f:
+              duoi5LamTrenMT +
+              tu5Den65LamTrenMT +
+              tu65Den8LamTrenMT +
+              tu8Den10LamTrenMT +
+              " Học sinh",
           },
           {
             a: "Số lượng làm trên điện thoại",
@@ -236,6 +284,12 @@ export default {
             c: tu5Den65LamTrenDT + " Học sinh",
             d: tu65Den8LamTrenDT + " Học sinh",
             e: tu8Den10LamTrenDT + " Học sinh",
+            f:
+              duoi5LamTrenDT +
+              tu5Den65LamTrenDT +
+              tu65Den8LamTrenDT +
+              tu8Den10LamTrenDT +
+              " Học sinh",
           },
           {
             a: "Số lượng thiết bị không xác định",
@@ -243,6 +297,11 @@ export default {
             c: tu5Den65KhongXacDinh,
             d: tu65Den8KhongXacDinh,
             e: tu8Den10KhongXacDinh,
+            f:
+              duoi5KhongXacDinh +
+              tu5Den65KhongXacDinh +
+              tu65Den8KhongXacDinh +
+              tu8Den10KhongXacDinh,
           },
         ];
         this.$emit("parsed", returnJson);

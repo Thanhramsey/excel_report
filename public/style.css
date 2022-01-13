@@ -92,3 +92,7 @@
   .v-slide-group__content.v-tabs-bar__content {
 	background-color: darkslategray;
   }
+
+  .v-tab.v-tab--active{
+	color: lightcoral !important;
+  }
